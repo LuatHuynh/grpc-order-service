@@ -5,10 +5,10 @@ import { BaseEntity } from './base.entity';
 import { OrderItemEntity } from './oderItem.entity';
 
 export enum ORDER_STATUS_ENUM {
-  CONFIRMED = 'Confirmed',
-  SHIPPED = 'Shipped',
-  DELIVERED = 'Delivered',
-  CANCELED = 'Canceled',
+  CONFIRMED = 'CONFIRMED',
+  SHIPPED = 'SHIPPED',
+  DELIVERED = 'DELIVERED',
+  CANCELED = 'CANCELED',
 }
 
 @Entity({

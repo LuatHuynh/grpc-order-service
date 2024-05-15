@@ -30,6 +30,6 @@ export class OrderItemEntity extends BaseEntity {
   @JoinColumn({ name: 'order_id' })
   order: OrderEntity;
 
-  @Field((type) => ProductEntity)
+  @Field((type) => ProductEntity, { nullable: true })
   product: ProductEntity | undefined;
 }

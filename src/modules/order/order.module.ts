@@ -1,4 +1,3 @@
-import { join } from 'path';
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 
@@ -7,7 +6,8 @@ import { OrderEntity } from '@entities/oder.entity';
 import { OrderService } from './order.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { OrderItemEntity } from '@entities/oderItem.entity';
-import { PRODUCT_PACKAGE_NAME } from 'src/common/type/product';
+import { OrderController } from './order.controller';
+import { PRODUCT_PACKAGE_NAME } from 'clt-jwat-common';
 
 @Module({
   providers: [OrderService],
@@ -18,12 +18,13 @@ import { PRODUCT_PACKAGE_NAME } from 'src/common/type/product';
         transport: Transport.GRPC,
         options: {
           package: PRODUCT_PACKAGE_NAME,
-          protoPath: join(__dirname, '../../../proto/product.proto'),
+          protoPath: 'node_modules/clt-jwat-common/common/protos/product.proto',
           url: config.PRODUCT_SERVICE_URL,
         },
       },
     ]),
     TypeOrmModule.forFeature([OrderEntity, OrderItemEntity]),
   ],
+  controllers: [OrderController],
 })
 export class OrderModule {}
