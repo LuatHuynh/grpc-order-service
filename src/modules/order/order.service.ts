@@ -161,31 +161,7 @@ export class OrderService implements OnModuleInit {
         },
       );
     }
-
-    if (filter.minTotal && filter.maxTotal) {
-      query.andHaving(
-        'SUM(orderItem.quantity * orderItem.price) between :minTotal and :maxTotal',
-        {
-          minTotal: filter.minTotal,
-          maxTotal: filter.maxTotal,
-        },
-      );
-    } else if (filter.minTotal) {
-      query.andHaving(
-        'SUM(orderItem.quantity * orderItem.price) >= :minTotal',
-        {
-          minTotal: filter.minTotal,
-        },
-      );
-    } else if (filter.maxTotal) {
-      query.andHaving(
-        'SUM(orderItem.quantity * orderItem.price) <= :maxTotal',
-        {
-          maxTotal: filter.maxTotal,
-        },
-      );
-    }
-
+    console.log(query.getQueryAndParameters());
     const orderIds: { order_id: string }[] = await query.getRawMany();
 
     const orderWithProducts = await Promise.all(
